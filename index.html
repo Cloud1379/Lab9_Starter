@@ -2,6 +2,14 @@
 <html lang="en">
 
 <head>
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({
+      token: "338ebba98f594050bdfe531d597e51a1"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
+
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -102,6 +110,91 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+
+    errorBtns[0].addEventListener('click', () => {
+      console.log('Console Log');
+    });
+
+    errorBtns[1].addEventListener('click', () => {
+      console.error('Console Error');
+    });
+
+    let count = 0;
+    errorBtns[2].addEventListener('click', () => {
+      console.count('Console Count');
+    });
+
+    errorBtns[3].addEventListener('click', () => {
+      console.warn('Console Warn Button');
+    });
+
+    errorBtns[4].addEventListener('click', () => {
+      console.assert(false, 'Console Assert');
+    });
+
+    errorBtns[5].addEventListener('click', () => {
+      console.clear();
+    });
+
+    errorBtns[6].addEventListener('click', () => {
+      console.dir(document);
+    });
+
+    errorBtns[7].addEventListener('click', () => {
+      console.dirxml(document);
+    });
+
+    errorBtns[8].addEventListener('click', () => {
+      console.group('Group');
+    });
+
+    errorBtns[9].addEventListener('click', () => {
+      console.groupEnd();
+    });
+
+    errorBtns[10].addEventListener('click', () => {
+      console.table(["Mouse", "Keyboard", "Monitor"]);
+    });
+
+    let timer;
+    errorBtns[11].addEventListener('click', () => {
+      timer = console.time('Timer');
+    });
+
+    errorBtns[12].addEventListener('click', () => {
+      console.timeEnd('Timer');
+    });
+
+    errorBtns[13].addEventListener('click', () => {
+      console.trace('Console Trace');
+    });
+
+    errorBtns[14].addEventListener('click', () => {
+      functionNotAFunction();
+    });
+
+    try {
+      document.querySelector('#nonexistent-element')
+    } catch (error) {
+      let errorThrow = new noButtonError('No Button Error');
+      throw (errorThrow);
+      console.error('Error:', error);
+    } finally {
+      console.log('Finally');
+    }
+
+    class errorThrow extends Error {
+      constructor(message) {
+        super(message);
+        this.name = 'No Button Error';
+      }
+    }
+
+    window.onerror = function (message, url, line, col, error) {
+      console.error('Global Error:', message);
+      TrackJS.track(error);
+    }
+
   </script>
 </body>
 
