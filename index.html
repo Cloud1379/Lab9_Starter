@@ -166,7 +166,17 @@
     });
 
     errorBtns[13].addEventListener('click', () => {
-      console.trace('Console Trace');
+      function deep() {
+        return deeper();
+      }
+      function deeper() {
+        return deepest();
+      }
+      function deepest() {
+        console.trace();
+        return;
+      }
+      deep();
     });
 
     errorBtns[14].addEventListener('click', () => {
